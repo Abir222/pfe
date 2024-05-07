@@ -14,42 +14,5 @@
     - name: SAVE ASA CONFIG
       copy:
         content: "{{ output.stdout[0] }}"
-        dest: "/home/ubuntu/cisco-backups/show_run_{{ inventory_hostname }}.txt"
+        dest: "/backups/asa_configs/show_run_{{ inventory_hostname }}.txt"
 
-- name: IOS ROUTERS
-  hosts: ios
-  gather_facts: false
-  connection: network_cli
-
-  tasks:
-    - name: IOS CONFIG
-      ios_command:
-        commands: show run
-      register: output_router
-
-    - name: SAVE IOS CONFIG
-      copy:
-        content: "{{ output_router.stdout[0] }}"
-        dest: "/home/ubuntu/cisco-backups/show_run_{{ inventory_hostname }}.txt"
-
-- name: GIT SECTION
-  hosts: localhost
-
-  tasks:
-
-    - name: print time
-      command: date
-      register: time
-      changed_when: false
-      delegate_to: localhost
-      run_once: yes
-
-    - name: git commands
-      shell: |
-        git add .
-        git commit -m "Device Backup on {{time.stdout}} "
-        git push
-      args:
-        chdir: /home/ubuntu/cisco-backups
-      delegate_to: localhost
-      run_once: yes
