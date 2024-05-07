@@ -1,0 +1,20 @@
+---
+- name: Backup Cisco ISE configurations
+  hosts: ise_servers
+  gather_facts: no
+  tasks:
+    - name: Create directory for backups
+      file:
+        path: "/backups/ise_configs/"
+        state: directory
+
+    - name: Gather running configuration
+      ios_command:
+        commands:
+          - show running-config
+      register: ise_config
+
+    - name: Save configuration to file
+      copy:
+        content: "{{ ise_config.stdout[0] }}"
+        dest: "/backups/ise_configs/{{ inventory_hostname }}_config.txt"
