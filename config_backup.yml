@@ -1,7 +1,7 @@
 ---
 
 - name: FIREWALLS
-  hosts: firewall
+  hosts: cisco.asa
   gather_facts: false
   connection: network_cli
 
