@@ -2,7 +2,7 @@
 
 - name: FIREWALLS
   hosts: cisco.asa
-  gather_facts: false
+  gather_facts: true
   connection: network_cli
 
   tasks:
@@ -14,5 +14,5 @@
     - name: SAVE ASA CONFIG
       copy:
         content: "{{ output.stdout[0] }}"
-        dest: "/backups/asa_configs/show_run_{{ inventory_hostname }}.txt"
+        dest: "/root/backups/show_run_{{ inventory_hostname }}.txt"
 
