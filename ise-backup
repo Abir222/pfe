@@ -9,7 +9,7 @@
         state: directory
 
     - name: Gather running configuration
-      ios_command:
+      ios_command:       
         commands:
           - show running-config
       register: ise_config
