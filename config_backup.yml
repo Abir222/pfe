@@ -2,7 +2,7 @@
 
 - name: FIREWALLS
   hosts: cisco.asa
-  gather_facts: true
+  gather_facts: false
   connection: network_cli
 
   tasks:
