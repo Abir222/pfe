@@ -1,0 +1,28 @@
+---
+- name: Backup Cisco Switch Configuration
+  hosts: cisco_switches
+  gather_facts: no
+  vars:
+    backup_destination: "~/config_backup"
+  tasks:
+    - name: Créer le répertoire de sauvegarde
+      hosts: localhost
+      tasks:
+        - name: Créer le répertoire de sauvegarde
+          file:
+            path: "{{ backup_destination }}"
+            state: directory
+
+    - name: Backup Cisco configuration
+      cisco.ios.ios_config:
+        provider: "{{ cli }}"
+        backup: yes
+        backup_options:
+          filename: "config_backup_{{ ansible_hostname }}_{{ ansible_date_time.date }}.txt"
+          destination: "{{ backup_destination }}"
+      delegate_to: localhost
+
+  handlers:
+    - name: Print backup directory path
+      debug:
+        msg: "Configuration backup saved to {{ backup_destination }}"
