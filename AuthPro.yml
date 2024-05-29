@@ -1,6 +1,6 @@
 ---
 - name: Créer un profil d'autorisation via l'API REST
-  hosts: localhost
+  hosts: ise
   connection : httpapi
   become : false
   gather_facts: no
