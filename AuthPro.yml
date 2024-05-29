@@ -1,6 +1,8 @@
 ---
 - name: Créer un profil d'autorisation via l'API REST
-  hosts: localhost
+  hosts: cisco.ise
+  connection : httpapi
+  become : false
   gather_facts: no
   tasks:
     - name: Créer un profil d'autorisation
