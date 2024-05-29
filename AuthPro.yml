@@ -6,9 +6,10 @@
   gather_facts: no
   tasks:
     - name: Créer un profil d'autorisation
-      uri:
+      ansible.builtin.uri:
         url: "https://161.1.7.221:9060/ers/config/authorizationprofile"
         method: POST
+        validate_certs: no
         headers:
           Content-Type: "application/json"
           Accept: "application/json"
