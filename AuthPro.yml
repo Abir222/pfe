@@ -24,8 +24,24 @@
               "vlan": {
                 "nameID": "200",
                 "tagID": 1
-              }
+              },
+              "trackMovement": false,
+              "agentlessPosture": false,
+              "serviceTemplate": false,
+              "easywiredSessionCandidate": false,
+              "coaType": "DEVICE",
+              "autoSmartPort": false,
+              "daclName": "SampleDACL",
+              "airespaceACL": "SampleACL",
+              "voiceDomainPermission": false,
+              "neat": false,
+              "webRedirection": {
+                "webRedirectionType": "SOME_TYPE",
+                "webRedirect": "http://example.com",
+                "acl": "SOME_ACL",
+                "portalName": "SOME_PORTAL"
             }
+          }
           }
         body_format: json
         validate_certs: no
