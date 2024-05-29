@@ -16,8 +16,8 @@
         body: >
           {
             "AuthorizationProfile": {
-              "id": "1122334455",
-              "name": "MonProfilAuthorization",
+              "id": "9988776655",
+              "name": "ProfilAuthorization",
               "description": "Description",
               "accessType": "ACCESS_ACCEPT",
               "authzProfileType": "SWITCH",
