@@ -1,0 +1,19 @@
+---
+- name: GET Cisco ISE Authorization Profile
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Get authorization profile from Cisco ISE
+      uri:
+        url: "https://161.1.7.221:9060/ers/config/authorizationprofile"
+        method: GET
+        headers:
+          Content-Type: "application/json"
+          Accept: "application/json"
+          Authorization: "Basic {{ auth_basic }}"
+        validate_certs: no
+      register: result
+
+    - name: Print the result
+      debug:
+        var: result.json
