@@ -1,8 +1,8 @@
 ---
 - name: Créer un profil d'autorisation via l'API REST
   hosts: Cisco ISE Group
-  connection : httpapi
-  become : false
+  connection: httpapi
+  become: false
   gather_facts: no
   tasks:
     - name: Créer un profil d'autorisation
@@ -40,8 +40,8 @@
                 "webRedirect": "http://example.com",
                 "acl": "SOME_ACL",
                 "portalName": "SOME_PORTAL"
+              }
             }
-          }
           }
         body_format: json
         validate_certs: no
@@ -50,3 +50,4 @@
     - name: Afficher le résultat
       debug:
         var: result
+
