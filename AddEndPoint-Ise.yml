@@ -3,6 +3,20 @@
   hosts: localhost
   gather_facts: no
   tasks:
+    - name: Vérifier l'accessibilité de l'API
+      ansible.builtin.uri:
+        url: "https://161.1.7.221:9060/ers/config/endpoint"
+        method: GET
+        headers:
+          Accept: "application/json"
+          Authorization: "Basic YWRtaW46T251dGVjaDEyMy4="
+        validate_certs: no
+      register: api_access_check
+
+    - name: Afficher le résultat de l'accessibilité de l'API
+      debug:
+        var: api_access_check
+
     - name: Créer un endpoint
       ansible.builtin.uri:
         url: "https://161.1.7.221:9060/ers/config/endpoint"
@@ -10,7 +24,7 @@
         headers:
           Content-Type: "application/json"
           Accept: "application/json"
-          Authorization: "Basic YWRtaW46T251dGVjaDEMy="
+          Authorization: "Basic YWRtaW46T251dGVjaDEyMy4="
         body: >
           {
             "ERSEndPoint": {
@@ -24,7 +38,8 @@
         body_format: json
         validate_certs: no
       register: result
+      when: api_access_check.status == 200
 
-    - name: Afficher le résultat
+    - name: Afficher le résultat de la création de l'endpoint
       debug:
         var: result
