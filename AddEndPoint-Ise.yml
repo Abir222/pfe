@@ -1,0 +1,30 @@
+---
+- name: Créer un endpoint en Cisco ISE via l'API REST
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Créer un endpoint
+      ansible.builtin.uri:
+        url: "https://161.1.7.221:9060/ers/config/endpoint"
+        method: POST
+        headers:
+          Content-Type: "application/json"
+          Accept: "application/json"
+          Authorization: "Basic YWRtaW46T251dGVjaDEyMy4="
+        body: >
+          {
+            "ERSEndPoint": {
+              "name": "asa",
+              "description": "MyEndpoint",
+              "mac": "50:32:34:48:95:36",
+              "groupId": "aa13bb40-8bff-11s6-946c-525400b48591",
+              "staticGroupAssignment": true
+            }
+          }
+        body_format: json
+        validate_certs: no
+      register: result
+
+    - name: Afficher le résultat
+      debug:
+        var: result
