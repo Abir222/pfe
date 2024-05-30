@@ -10,7 +10,7 @@
         headers:
           Content-Type: "application/json"
           Accept: "application/json"
-          Authorization: "Basic YWRtaW46T251dGVjaDEyMy4="
+          Authorization: "Basic YWRtaW46T251dGVjaDEMy="
         body: >
           {
             "ERSEndPoint": {
