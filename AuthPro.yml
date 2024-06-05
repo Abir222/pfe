@@ -1,6 +1,6 @@
 ---
 - name: Créer un profil d'autorisation via l'API REST
-  hosts: Cisco ISE Group
+  hosts: all
   connection: httpapi
   become: false
   gather_facts: no
