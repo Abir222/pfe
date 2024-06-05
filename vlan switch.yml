@@ -1,0 +1,43 @@
+---
+- name: Configure VLANs on Switch
+  hosts: all
+  gather_facts: no
+  connection: network_cli
+  tasks:
+    - name: Create VLANs
+      ios_command:
+        commands:
+          - conf t
+          - vlan 10
+          - name bleu
+          - vlan 20
+          - name green
+
+    - name: Assign VLANs to interfaces
+      ios_command:
+        commands:
+          - conf t
+          - interface Ethernet0/0
+          - switchport trunk encapsulation dot1q
+          - switchport mode trunk
+          - interface Ethernet0/1
+          - switchport access vlan 10
+          - switchport mode access
+          - interface Ethernet0/2
+          - switchport access vlan 10
+          - switchport mode access
+          - interface Ethernet0/3
+          - switchport access vlan 20
+          - switchport mode access
+          - interface Ethernet1/0
+          - switchport access vlan 20
+          - switchport mode access
+      register: create_vlans
+
+    - name: save
+      ios_command:
+        commands:
+          - wr
+
+    - name: Debug registered var
+      debug: var=sh_vlan_br_result.stdout_lines
