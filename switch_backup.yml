@@ -1,14 +1,11 @@
----
-
-
 - name: Backup Cisco Switch Configuration
   hosts: all
   gather_facts: no
-  connections: network_cli
+  connection: network_cli
   vars:
     backup_destination: "~/config_backup"
   tasks:
-    - name: Créer le répertoire de sauvegarde
+    - name: Créer le répertoire de sauvegarde sur localhost
       hosts: localhost
       tasks:
         - name: Créer le répertoire de sauvegarde
