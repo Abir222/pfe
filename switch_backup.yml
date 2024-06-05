@@ -12,16 +12,16 @@
 
 - name: Backup Cisco Switch Configuration
   hosts: all
-  gather_facts: no
+  gather_facts: yes
   connection: network_cli
   vars:
     backup_destination: "~/config_backup"
     cli:
       host: "{{ inventory_hostname }}"
-      username: "cisco"
-      password: "cisco"
+      username: "your_username"
+      password: "your_password"
       authorize: yes
-      auth_pass: "cisco"
+      auth_pass: "your_enable_password"
   tasks:
     - name: Backup Cisco configuration
       cisco.ios.ios_config:
