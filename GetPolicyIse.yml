@@ -9,6 +9,8 @@
         headers:
           Content-Type: "application/json"
         validate_certs: no
+        user: "admin"
+        password: "Onetech123."
       register: response
 
     - name: Affichage de la réponse de l'API
