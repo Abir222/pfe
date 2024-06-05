@@ -2,8 +2,9 @@
 
 
 - name: Backup Cisco Switch Configuration
-  hosts: cisco_switches
+  hosts: all
   gather_facts: no
+  connections: network_cli
   vars:
     backup_destination: "~/config_backup"
   tasks:
