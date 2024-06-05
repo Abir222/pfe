@@ -8,7 +8,7 @@
     - name: Créer le répertoire de sauvegarde sur localhost
       hosts: localhost
       tasks:
-        - name: Créer le répertoire de sauvegarde
+    - name: Créer le répertoire de sauvegarde
           file:
             path: "{{ backup_destination }}"
             state: directory
