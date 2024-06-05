@@ -1,6 +1,6 @@
 ---
 - name: Créer un endpoint en Cisco ISE via l'API REST
-  hosts: Cisco ISE Group
+  hosts: all
   gather_facts: no
   tasks:
     - name: Vérifier l'accessibilité de l'API
