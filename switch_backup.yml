@@ -1,3 +1,15 @@
+---
+- name: Créer le répertoire de sauvegarde sur localhost
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Créer le répertoire de sauvegarde
+      file:
+        path: "{{ backup_destination }}"
+        state: directory
+      vars:
+        backup_destination: "~/config_backup"
+
 - name: Backup Cisco Switch Configuration
   hosts: all
   gather_facts: no
@@ -5,14 +17,6 @@
   vars:
     backup_destination: "~/config_backup"
   tasks:
-    - name: Créer le répertoire de sauvegarde sur localhost
-      hosts: localhost
-      tasks:
-    - name: Créer le répertoire de sauvegarde
-          file:
-            path: "{{ backup_destination }}"
-            state: directory
-
     - name: Backup Cisco configuration
       cisco.ios.ios_config:
         provider: "{{ cli }}"
