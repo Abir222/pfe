@@ -18,10 +18,10 @@
     backup_destination: "~/config_backup"
     cli:
       host: "{{ inventory_hostname }}"
-      username: "your_username"
-      password: "your_password"
+      username: "cisco"
+      password: "cisco"
       authorize: yes
-      auth_pass: "your_enable_password"
+      auth_pass: "cisco"
   tasks:
     - name: Backup Cisco configuration
       cisco.ios.ios_config:
