@@ -1,6 +1,7 @@
 ---
 - name: Liste des policy sets
   hosts: localhost
+  gather_facts: no
   tasks:
     - name: Appel API pour récupérer la liste des policy sets
       uri:
