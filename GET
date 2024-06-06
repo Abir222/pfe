@@ -1,0 +1,26 @@
+---
+- name: Récupérer les policy sets de Cisco ISE
+  hosts: localhost
+  tasks:
+    - name: Encodage des informations d'identification en base64
+      command: echo -n 'admin:Onetech123.' | base64
+      register: auth_encoded
+      delegate_to: localhost
+
+    - name: Appel API pour récupérer la liste des policy sets
+      uri:
+        url: "https://10.215.26.83:443/api/v1/policy/device-admin/policy-set"
+        method: GET
+        headers:
+          Accept: "application/json"
+          Authorization: "Basic {{ auth_encoded.stdout }}"
+        validate_certs: no
+      register: response
+
+    - name: Vérifier le type de contenu de la réponse
+      debug:
+        msg: "Type de contenu : {{ response.content_type }}"
+
+    - name: Affichage de la réponse de l'API
+      debug:
+        var: response.json if response.content_type == 'application/json' else response.content
